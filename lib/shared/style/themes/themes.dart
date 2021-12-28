@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 ThemeData lightTheme = ThemeData(
+  fontFamily: 'Jannah',
   //this color for scaffold background color
   scaffoldBackgroundColor: Colors.white,
   //this color for the screen background color
@@ -43,6 +44,7 @@ ThemeData lightTheme = ThemeData(
 );
 
 ThemeData darkTheme = ThemeData(
+  fontFamily: 'Jannah',
   primarySwatch: Colors.deepOrange,
   //this color for scaffold background color
   scaffoldBackgroundColor: const Color(0xFF333739),
