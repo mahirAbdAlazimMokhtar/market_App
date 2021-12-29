@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shop_app/shared/style/color.dart';
 
 ThemeData lightTheme = ThemeData(
   fontFamily: 'Jannah',
@@ -28,12 +29,12 @@ ThemeData lightTheme = ThemeData(
   ),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     type: BottomNavigationBarType.fixed,
-    selectedItemColor: Colors.deepOrange,
+    selectedItemColor: defaultColor,
     elevation: 20.0,
     unselectedItemColor: Colors.grey,
     backgroundColor: Colors.white,
   ),
-  primarySwatch: Colors.deepOrange,
+  primarySwatch: defaultColor,
   textTheme: const TextTheme(
     bodyText1: TextStyle(
       fontSize: 18.0,
@@ -45,7 +46,7 @@ ThemeData lightTheme = ThemeData(
 
 ThemeData darkTheme = ThemeData(
   fontFamily: 'Jannah',
-  primarySwatch: Colors.deepOrange,
+  primarySwatch: defaultColor,
   //this color for scaffold background color
   scaffoldBackgroundColor: const Color(0xFF333739),
   //this color for the screen background color
