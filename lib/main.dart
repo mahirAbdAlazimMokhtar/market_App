@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/layout/shop_app/onBoarding/onBoarding_screen.dart';
+import 'package:shop_app/network/remote/dio_helper.dart';
 import 'package:shop_app/shared/style/themes/themes.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  DioHelper.init();
   runApp(const ShopApp());
 }
 
