@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/layout/shop_app/shop_login_screen/login_screen.dart';
+import 'package:shop_app/layout/shop_app/login_screen/login_screen.dart';
 import 'package:shop_app/shared/component/component.dart';
 import 'package:shop_app/shared/style/color.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -21,20 +21,21 @@ class OnBoardingScreen extends StatefulWidget {
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
   List<BoardingModel> board = [
     BoardingModel(
-        image: 'assets/images/onboarding1.jpg',
+        image: 'assets/images/onboarding1.png',
         title: 'on Boarding 1',
         body: 'On Boarding Body 1'),
     BoardingModel(
-        image: 'assets/images/onboarding2.jpg',
+        image: 'assets/images/onboarding2.png',
         title: 'on Boarding 2',
         body: 'On Boarding Body 2'),
     BoardingModel(
-        image: 'assets/images/onboarding3.jpg',
+        image: 'assets/images/onboarding3.png',
         title: 'on Boarding 3',
         body: 'On Boarding Body 3'),
   ];
 
   var boardController = PageController();
+  //this for check if you arrived to last page in image
   bool isLast = false;
 
   @override
