@@ -15,85 +15,91 @@ void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
       (Route<dynamic> route) => false,
     );
 
-Widget defaultFormField({
-  required TextEditingController controller,
-  required TextInputType inputType,
-  required Function validator,
-  required String labelText,
-  required IconData prefixIcon,
-   IconData? suffixIcon ,
-   Function? onSubmit,
-   Function? suffixPressed,
-   Function? onChange,
-   Function? onTap,
-}) {
-  return TextFormField(
-    controller: controller,
-    keyboardType: inputType,
-    validator: (value ){
-      validator;
-    },
-    onChanged: (value) {
-      onChange;
-    },
-    onTap: (){
-      onTap;
-    },
-    decoration:  InputDecoration(
-      labelText: labelText,
-      border:const OutlineInputBorder(),
-      prefixIcon: Icon(prefixIcon),
-      suffixIcon: suffixIcon != null
-          ? IconButton(
-        onPressed: (){suffixPressed;},
-        icon: Icon(
-          suffixIcon,
-        ),
-      )
-          : null,
-  )
-  );
-}
 
-Widget space({double ? height,
-double ? width,
-}){
+Widget defaultFormField({
+  required context,
+  TextEditingController? controller,
+  required String label,
+  IconData ? prefix,
+  String ? initialValue,
+  TextInputType ?keyboardType,
+  Function(String)? onSubmit,
+  onChange,
+  onTap,
+  required String? Function(String?) validate,
+  bool isPassword = false,
+  bool enabled = true,
+  IconData ?suffix,
+  suffixPressed,
+}) =>
+    TextFormField(
+      controller: controller,
+      keyboardType: keyboardType,
+      obscureText: isPassword,
+      textAlign: TextAlign.start,
+      onFieldSubmitted: onSubmit,
+      enabled: enabled,
+      onChanged: onChange,
+      onTap: onTap,
+      validator: validate,
+      textCapitalization: TextCapitalization.words,
+      textAlignVertical: TextAlignVertical.center,
+      style:Theme.of(context).textTheme.bodyText1,
+      initialValue:initialValue ,
+      //textCapitalization: TextCapitalization.words,
+
+      decoration: InputDecoration(
+        labelText:label ,
+        border:const OutlineInputBorder(),
+        prefixIcon: Icon(prefix,),
+        suffixIcon: suffix != null ? IconButton(onPressed: suffixPressed,
+            icon: Icon(suffix)) : null,
+
+      ),
+    );
+
+Widget space({
+  double? height,
+  double? width,
+}) {
   return SizedBox(
     height: height,
     width: width,
   );
 }
 
-Widget defaultButton({
-  double width = double.infinity,
-  Color background = Colors.blue,
-  bool isUpperCase = true,
-  double radius = 3.0,
-  required Function function,
-  required String text,
-}) =>
-    Container(
-      width: width,
-      height: 50.0,
-      child: MaterialButton(
-        onPressed: (){
-          function;
-        },
-        child: Text(
-          isUpperCase ? text.toUpperCase() : text,
-          style:const TextStyle(
-            color: Colors.white,
-          ),
-        ),
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(
-          radius,
-        ),
-        color: background,
-      ),
-    );
 
-Widget defaultTextButton({required String title, required Function onPressed,})=>TextButton(onPressed: (){
-  onPressed;
-}, child: Text(title));
+
+Widget defaultTextButton({
+  required String title,
+  required Function onPressed,
+}) =>
+    TextButton(
+        onPressed: () {
+          onPressed;
+        },
+        child: Text(title));
+
+Widget defaultButton({
+  required VoidCallback onTap,
+  required String text,
+  double? width = double.infinity,
+
+}) => Container(
+  height: 40,
+  width: width,
+  decoration:const BoxDecoration(
+    color: Colors.red,
+  ),
+  child: ElevatedButton(
+    onPressed: onTap,
+    child: Text(
+      '$text',
+      style:const TextStyle(
+        color: Colors.white,
+        fontSize: 17,
+      ),
+    ),
+  ),
+);
+
