@@ -24,18 +24,21 @@ class ShopLoginScreen extends StatelessWidget {
             if (state.shopLoginModel.status!) {
               print(state.shopLoginModel.message!);
               print(state.shopLoginModel.data!.token);
+              //this toast msg for show to user when the user login in app
+              //if the username and password is correct the toast msg show your login success
+              //if the username is wrong toast show the msg show your login is field
               Fluttertoast.showToast(
-                  msg: "This is Center Short Toast",
+                  msg: "تم تسجيل الدخول بنجاح",
                   toastLength: Toast.LENGTH_LONG,
                   gravity: ToastGravity.BOTTOM,
                   timeInSecForIosWeb: 5,
-                  backgroundColor: Colors.green,
+                  backgroundColor: Colors.blue,
                   textColor: Colors.white,
                   fontSize: 16.0);
             } else {
               print(state.shopLoginModel.message!);
               Fluttertoast.showToast(
-                  msg: "This is Center Short Toast",
+                  msg: "هنالك خطأ في تسجيل الدخول",
                   toastLength: Toast.LENGTH_LONG,
                   gravity: ToastGravity.BOTTOM,
                   timeInSecForIosWeb: 5,
@@ -86,7 +89,7 @@ class ShopLoginScreen extends StatelessWidget {
                               controller: emailController,
                               prefix: Icons.email,
                             ),
-                            space(height: 30.0),
+                            space(height: 30.0 ),
                             // buildPasswordTextFormField(context),
                             defaultFormField(
                               context: context,
