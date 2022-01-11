@@ -15,21 +15,20 @@ void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
       (Route<dynamic> route) => false,
     );
 
-
 Widget defaultFormField({
   required context,
   TextEditingController? controller,
   required String label,
-  IconData ? prefix,
-  String ? initialValue,
-  TextInputType ?keyboardType,
+  IconData? prefix,
+  String? initialValue,
+  TextInputType? keyboardType,
   Function(String)? onSubmit,
   onChange,
   onTap,
   required String? Function(String?) validate,
   bool isPassword = false,
   bool enabled = true,
-  IconData ?suffix,
+  IconData? suffix,
   suffixPressed,
 }) =>
     TextFormField(
@@ -44,17 +43,19 @@ Widget defaultFormField({
       validator: validate,
       textCapitalization: TextCapitalization.words,
       textAlignVertical: TextAlignVertical.center,
-      style:Theme.of(context).textTheme.bodyText1,
-      initialValue:initialValue ,
+      style: Theme.of(context).textTheme.bodyText1,
+      initialValue: initialValue,
       //textCapitalization: TextCapitalization.words,
 
       decoration: InputDecoration(
-        labelText:label ,
-        border:const OutlineInputBorder(),
-        prefixIcon: Icon(prefix,),
-        suffixIcon: suffix != null ? IconButton(onPressed: suffixPressed,
-            icon: Icon(suffix)) : null,
-
+        labelText: label,
+        border: const OutlineInputBorder(),
+        prefixIcon: Icon(
+          prefix,
+        ),
+        suffixIcon: suffix != null
+            ? IconButton(onPressed: suffixPressed, icon: Icon(suffix))
+            : null,
       ),
     );
 
@@ -67,8 +68,6 @@ Widget space({
     width: width,
   );
 }
-
-
 
 Widget defaultTextButton({
   required String title,
@@ -84,22 +83,21 @@ Widget defaultButton({
   required VoidCallback onTap,
   required String text,
   double? width = double.infinity,
-
-}) => Container(
-  height: 40,
-  width: width,
-  decoration:const BoxDecoration(
-    color: Colors.red,
-  ),
-  child: ElevatedButton(
-    onPressed: onTap,
-    child: Text(
-      '$text',
-      style:const TextStyle(
-        color: Colors.white,
-        fontSize: 17,
+}) =>
+    Container(
+      height: 40,
+      width: width,
+      decoration: const BoxDecoration(
+        color: Colors.red,
       ),
-    ),
-  ),
-);
-
+      child: ElevatedButton(
+        onPressed: onTap,
+        child: Text(
+          text,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 17,
+          ),
+        ),
+      ),
+    );
