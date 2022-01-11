@@ -40,6 +40,7 @@ dependencies:
   bloc: ^8.0.1
   buildcondition: ^0.0.4
   fluttertoast: ^8.0.8
+  shared_preferences: ^2.0.12
 
 dev_dependencies:
   flutter_test:
