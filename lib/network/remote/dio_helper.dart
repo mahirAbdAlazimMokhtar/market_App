@@ -2,16 +2,15 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
 class DioHelper {
-
-
   //when you finish create dio
   //go to the main add
   // DioHelper.init();
   //WidgetsFlutterBinding.ensureInitialized();
-  static   Dio? dio;
+  static Dio? dio;
 
 //this for init
   static init() {
+    // ignore: avoid_print
     print('dio Initialize');
     dio = Dio(BaseOptions(
       //z dio need to things first thing z base url
@@ -35,8 +34,8 @@ class DioHelper {
     String? token,
   }) async {
     dio!.options.headers = {
-    'lang':lang,
-    'authorization':token,
+      'lang': lang,
+      'authorization': token,
     };
     return await dio!.get(
       url,
@@ -54,8 +53,8 @@ class DioHelper {
   }) async {
     //this for header
     dio!.options.headers = {
-      'lang':lang,
-      'authorization':token,
+      'lang': lang,
+      'authorization': token,
     };
     return dio!.post(
       url,
