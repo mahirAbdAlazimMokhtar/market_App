@@ -39,6 +39,7 @@ dependencies:
   dio: ^4.0.4
   bloc: ^8.0.1
   buildcondition: ^0.0.4
+  fluttertoast: ^8.0.8
 
 dev_dependencies:
   flutter_test:
