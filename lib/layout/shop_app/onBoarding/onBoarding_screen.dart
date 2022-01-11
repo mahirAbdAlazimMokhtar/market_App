@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:shop_app/layout/shop_app/login_screen/login_screen.dart';
 import 'package:shop_app/shared/component/component.dart';
@@ -14,6 +16,8 @@ class BoardingModel {
 }
 
 class OnBoardingScreen extends StatefulWidget {
+  const OnBoardingScreen({Key? key}) : super(key: key);
+
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
 }
@@ -41,76 +45,79 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          TextButton(onPressed: (){
-            navigateAndFinish(context, ShopLoginScreen());
-          }, child:const Text('Skip'),),
-        ],
-      ),
-        body: Padding(
-      padding: const EdgeInsets.all(30.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: PageView.builder(
-              onPageChanged: (int index){
-                if (index == board.length - 1) {
-                  setState(() {
-                    isLast=true;
-                  });
-                }else{
-                  setState(() {
-                    isLast = false;
-                  });
-                }
+        appBar: AppBar(
+          actions: [
+            TextButton(
+              onPressed: () {
+                navigateAndFinish(context, ShopLoginScreen());
               },
-              controller: boardController,
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index) =>
-                  _buildOnBoardingItem(board[index]),
-              itemCount: board.length,
+              child: const Text('Skip'),
             ),
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          Row(
+          ],
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(30.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SmoothPageIndicator(
-                controller: boardController,
-                count: board.length,
-                effect: const ExpandingDotsEffect(
-                  dotColor: Colors.grey,
-                  dotHeight:10.0 ,
-                  dotWidth: 10.0,
-                  spacing:5.0,
-                  expansionFactor: 4.0,
-                  activeDotColor: defaultColor,
+              Expanded(
+                child: PageView.builder(
+                  onPageChanged: (int index) {
+                    if (index == board.length - 1) {
+                      setState(() {
+                        isLast = true;
+                      });
+                    } else {
+                      setState(() {
+                        isLast = false;
+                      });
+                    }
+                  },
+                  controller: boardController,
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) =>
+                      _buildOnBoardingItem(board[index]),
+                  itemCount: board.length,
                 ),
               ),
-              const Spacer(),
-              FloatingActionButton(
-                onPressed: () {
-                  if (isLast) {
-                    navigateAndFinish(context, ShopLoginScreen());
-                  }  else {
-                    boardController.nextPage(
-                      duration: const Duration(
-                        milliseconds: 500,
-                      ),
-                      curve: Curves.easeInBack,
-                    );
-                  }
-                },
-                child: const Icon(Icons.arrow_forward_ios),
+              const SizedBox(
+                height: 40,
+              ),
+              Row(
+                children: [
+                  SmoothPageIndicator(
+                    controller: boardController,
+                    count: board.length,
+                    effect: const ExpandingDotsEffect(
+                      dotColor: Colors.grey,
+                      dotHeight: 10.0,
+                      dotWidth: 10.0,
+                      spacing: 5.0,
+                      expansionFactor: 4.0,
+                      activeDotColor: defaultColor,
+                    ),
+                  ),
+                  const Spacer(),
+                  FloatingActionButton(
+                    onPressed: () {
+                      if (isLast) {
+                        navigateAndFinish(context, ShopLoginScreen());
+                      } else {
+                        boardController.nextPage(
+                          duration: const Duration(
+                            milliseconds: 500,
+                          ),
+                          curve: Curves.easeInBack,
+                        );
+                      }
+                    },
+                    child: const Icon(Icons.arrow_forward_ios),
+                  ),
+                ],
               ),
             ],
           ),
-        ],
-      ),
-    ));
+        ));
   }
 
 //this widget for build item for on boarding

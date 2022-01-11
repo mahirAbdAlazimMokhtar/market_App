@@ -14,14 +14,10 @@ class ShopApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       theme: lightTheme,
       debugShowCheckedModeBanner: false,
-      home:  OnBoardingScreen(),
+      home: const OnBoardingScreen(),
     );
   }
 }
-
-
-
-

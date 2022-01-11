@@ -1,14 +1,15 @@
 import 'package:buildcondition/buildcondition.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shop_app/layout/shop_app/login_screen/Bloc/login_cubit.dart';
 
 import 'package:shop_app/layout/shop_app/register_screen/register_screen.dart';
 import 'package:shop_app/shared/component/component.dart';
 
 class ShopLoginScreen extends StatelessWidget {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   static var formKey = GlobalKey<FormState>();
 
   ShopLoginScreen({Key? key}) : super(key: key);
@@ -19,7 +20,30 @@ class ShopLoginScreen extends StatelessWidget {
       create: (context) => LoginCubit(),
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
-          // TODO: implement listener
+          if (state is LoginSuccess) {
+            if (state.shopLoginModel.status!) {
+              print(state.shopLoginModel.message!);
+              print(state.shopLoginModel.data!.token);
+              Fluttertoast.showToast(
+                  msg: "This is Center Short Toast",
+                  toastLength: Toast.LENGTH_LONG,
+                  gravity: ToastGravity.BOTTOM,
+                  timeInSecForIosWeb: 5,
+                  backgroundColor: Colors.green,
+                  textColor: Colors.white,
+                  fontSize: 16.0);
+            } else {
+              print(state.shopLoginModel.message!);
+              Fluttertoast.showToast(
+                  msg: "This is Center Short Toast",
+                  toastLength: Toast.LENGTH_LONG,
+                  gravity: ToastGravity.BOTTOM,
+                  timeInSecForIosWeb: 5,
+                  backgroundColor: Colors.red,
+                  textColor: Colors.white,
+                  fontSize: 16.0);
+            }
+          }
         },
         builder: (context, state) {
           return Scaffold(
@@ -66,7 +90,10 @@ class ShopLoginScreen extends StatelessWidget {
                             // buildPasswordTextFormField(context),
                             defaultFormField(
                               context: context,
-                              isPassword: !LoginCubit.get(context).isPasswordShown ? true : false,
+                              isPassword:
+                                  !LoginCubit.get(context).isPasswordShown
+                                      ? true
+                                      : false,
                               validate: (value) {
                                 if (value!.isEmpty) {
                                   return 'password must not be empty';
@@ -124,11 +151,16 @@ class ShopLoginScreen extends StatelessWidget {
                               children: [
                                 const Text("Don't have an account ?"),
                                 TextButton(
-                                    onPressed: () {
-                                      navigateTo(
-                                          context, const RegisterScreen());
-                                    },
-                                    child: const Text("Register Now"))
+                                  onPressed: () {
+                                    navigateTo(
+                                      context,
+                                      const RegisterScreen(),
+                                    );
+                                  },
+                                  child: const Text(
+                                    "Register Now",
+                                  ),
+                                )
                               ],
                             )
                           ]),
